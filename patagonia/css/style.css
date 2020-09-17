@@ -1,0 +1,118 @@
+@charset "utf-8";
+
+
+*{padding: 0px; margin: 0px;}
+ul,ol,li{list-style: none;}
+body{font-family: "맑은 고딕",arial,sans-serif; font-size: 12px;}
+a{text-decoration: none; color:#333;}
+
+/* 상단헤더 서식 */
+header{width:100%; height: 116px; position: relative;}
+header #hd {width:100%; height:116px; position: absolute; }
+#header_top h1 {width:1200px; text-align: center;}
+#header_top h1 img{width:150px; padding-top: 25px;}
+#header_top, nav{position: absolute; z-index: 100;}
+
+nav {top:50%;}
+.gnb{width:1200px; height: 58px; padding-left: 465px; line-height: 55px;}
+.gnb > li{float:left; padding: 0px 62px; text-align: center;}
+.gnb > li > a {color:#ffffff; font-size: 16px; font-weight: bold; }
+.gnb > li > a:hover {color:#ee772f;}
+
+/* 메뉴클릭시 해당콘텐츠가 올라오면 해당 메뉴에 적용할 서식 */
+.on {color:#ee772f !important;}
+
+
+/* 콘텐츠영역 서식 */
+section {clear: both; overflow: hidden;}
+section #visual{
+    width:100%; height: 720px;
+    background-image: url(../img2/main2.jpg);
+    background-repeat: no-repeat; 
+    background-position: center;
+    background-size: 100%;
+    position: relative;
+}
+
+#visual img{position: absolute; opacity: 0%;}
+/* 타이틀 텍스트 */
+#visual img:first-child {bottom: 10%; right: 0%;}
+/* 자동차 이미지 */
+/*#visual img:last-child {left: 0%; bottom: 20%;}*/
+
+/* 비주얼 박스를 제외한 나머지 콘텐츠 서식 */
+.sub_con {width:940px; height: 740px; margin: 30px auto; background-color:aqua;}
+.sub_con1 {
+    width:940px; height: 830px; 
+    margin: 0px auto;
+    border: 1px solid #ccc;
+}
+.sub_con2 {
+    width:940px;
+    margin: 0px auto;
+}
+.sub_con3{
+    width:940px;
+    margin: 0px auto;
+}
+.sub_con2 img{width:940px;}
+.sub_con3 img{width:940px;}
+
+.sub_con4 {width:940px; height: 640px; margin: 0px auto; text-align: center;}
+.sub_con1_1 {font-size:20px; padding: 30px; text-align: center;}
+.sub_con2_1 {font-size:20px; padding: 30px; text-align: center;}
+.sub_con3_1 {font-size:20px; padding: 30px; text-align: center;}
+.sub_con4_1 {font-size:20px; padding: 30px;}
+.sub_con5_1 {font-size:20px; padding: 30px; text-align: center;}
+
+.sub_con4 ul {display: flex;}
+.sub_con4 ul li {margin:0px 20px 20px 0px}
+
+.sub_con4 ul li img {width:300px;}
+
+#history {position: relative;}
+#history img {width:940px;}
+#history ul {display: flex;}
+#history ul li {background-color:#f2eeee;}
+#history ul li a {
+    font-size: 15px; 
+    padding: 20px 58px;
+    display: block;
+    border-right: 1px solid #b5b5b5;
+}
+
+#history ul li:hover a{background:#ee772f; color:#fff;}
+
+.on2{background-color:#ee772f !important;}
+
+/* history span 영역 */
+.hi_1 {
+    position: absolute; 
+    font-size: 14px; 
+    line-height: 25px;
+    bottom: 40px;
+}
+
+.sub_con5{width:940px; height: 900px; margin:30px auto; text-align: center; margin-top: 60px;}
+
+#subject{width:300px; height: 70px; margin: 0px 0px; text-align: center;}
+#name{width:300px; height: 20px; margin-bottom: 10px; text-align: center;}
+#email{width:300px; height: 20px; margin-bottom: 30px; text-align: center;}
+#message{width:300px; height: 250px; margin-bottom: 30px; text-align: center;}
+#me2 {margin: 0px auto;}
+#me2 input[type="submit"]{width:150px; height: 30px; margin-bottom: 20px;}
+
+.f_1{display: block; width:300px; margin:10px auto 10px auto; text-align: left;}
+
+/* 푸터영역 서식 */
+footer{width:100%; height: 80px; background-color:#222;}
+footer address{font-style: normal; color:#fff; text-align: center; line-height: 80px;}
+
+/* top버튼 서식 */
+footer > a {background-color:#000; color:#fff; font-size: 20px; padding: 12px 10px; position: fixed; bottom: 90px; right: 50px;}
+
+/* 헤더 내비게이션 추가서식 */
+.act{position: fixed;  top:0px; width:100%; z-index: 1000; background-color:#00559d;}
+
+
+.status{background-color:#ffff00; color:#f00; position: fixed; right: 30px; top:100px; z-index: 7777;}

@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>scroll이벤트를 활용한 원페이지_레이아웃 구현</title>
+    <link href="css/style.css" rel="stylesheet" type="text/css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script>
+    $(document).ready(function(){
+        
+        //탑버튼 숨기기
+        $('footer > a').hide();
+        
+        //비주얼 이미지 영역에 타이틀, 자동차 사진 보이게 하기
+        var title = $('#visual img:first-child');
+//        var car = $('#visual img:last-child');
+        
+//        car.animate({'left':'20%','opacity':'1'},500);
+        title.delay(500).animate({'right':'10%','opacity':'1'},500);
+        
+        //내비게이션 메뉴 클릭시 해당하는 컨텐츠 상단 top:58픽셀 위치에 올라오게 하기
+        $('.gnb > li').on({'click focus':function(){
+           var num = $(this).index()+1; //1,2,3,4,5,6, 0번은 비쥬얼박스 인덱스값이라서 필요없음
+            console.log(num);
+            
+            var con = $('section article').eq(num).offset().top; //각 콘텐츠 article에 top위치값을 변수에 저장
+            
+            $('html, body').animate({scrollTop:con-58},500); //각 콘텐츠가 스크롤 높이 58픽셀까지 상단으로 애니메이션 되면서 올라감.
+            
+        }
+        });
+        
+        
+        $('sub_con1 ul li').click(function(){
+            
+            $(this).addClass('on2').parent().siblings().find('a').removeClass('on2');
+            
+        });
+        
+        
+        $(window).scroll(function(){
+           var sPos = $(window).scrollTop();
+            
+            $('.status').text(sPos); /* status 값 */ 
+            
+            if(sPos >= 700){ //스크롤 높이값 700픽셀이상이면
+                $('footer a').fadeIn(); //탑버튼 나오게하고
+            }else{ //그렇지않으면
+                $('footer a').fadeOut(); //탑버튼 숨기게 한다.   
+            }
+            
+            if(sPos >= 58){ //만약에 세로스크롤 높이가 58픽셀이상이면
+                $('nav').addClass('act'); //내비게이션에 서식을 추가하여 고정시키고
+            }else{ //그렇지 않다면 (화면을 위로 올리면)
+                $('nav').removeClass('act'); //내비게이션 서식을 제거하여 다시 원래위치로 돌림.
+            }
+            
+            
+            //각 해당하는 콘텐츠가 상단으로 올라오면 해당하는 메뉴에 서식을 적용하기
+            
+            var h = $('section article').height()//각 콘텐츠별 높이값을 구하여 변수에 저장한다.
+                    
+            if(sPos >= h*1&&sPos < h*2){
+                $('.gnb a').removeClass('on');//기존에 적용된 서식이 있으면 제거하고
+                $('.gnb > li').eq(0).find('a').addClass('on'); //첫번째 메뉴 서식 적용
+            }else if(sPos >= h*2&&sPos < h*3){
+                $('.gnb a').removeClass('on');//기존에 적용된 서식이 있으면 제거하고
+                $('.gnb > li').eq(1).find('a').addClass('on');//두번째 메뉴에 서식적용
+            }else if(sPos >= h*3&&sPos < h*4){
+                $('.gnb a').removeClass('on');//기존에 적용된 서식이 있으면 제거하고
+                $('.gnb > li').eq(2).find('a').addClass('on');//세번째 메뉴에 서식적용
+            }else if(sPos >= h*4&&sPos < h*5){
+                $('.gnb a').removeClass('on');//기존에 적용된 서식이 있으면 제거하고
+                $('.gnb > li').eq(3).find('a').addClass('on');//네번째 메뉴에 서식적용
+            }else if(sPos >= h*5&&sPos < h*6){
+                $('.gnb a').removeClass('on');//기존에 적용된 서식이 있으면 제거하고
+                $('.gnb > li').eq(4).find('a').addClass('on');//다섯번째 메뉴에 서식적용
+            }else{
+                $('.gnb a').removeClass('on');//기존에 적용된 서식이 있으면 제거하고
+            }
+          
+            
+            
+            
+            //각 해당하는 콘텐츠가 상단으로 올라오면 해당하는 메뉴에 서식을 적용하기
+//            if(sPos>=776&&sPos<1400){
+//                $('.gnb a').removeClass('on'); //기존에 적용된 서식이 있으면 제거하고
+//                $('.gnb > li:first-child a').addClass('on'); //첫번째 메뉴 서식 적용
+//            }else if(sPos>=1546&&sPos<2200){
+//                $('.gnb a').removeClass('on'); //기존에 적용된 서식이 있으면 제거하고
+//                $('.gnb > li:nth-child(2) a').addClass('on'); //두번째 메뉴 서식 적용
+//            }else if(sPos>=2316&&sPos<2986){
+//                $('.gnb a').removeClass('on'); //기존에 적용된 서식이 있으면 제거하고
+//                $('.gnb > li:nth-child(3) a').addClass('on'); //세번째 메뉴 서식 적용
+//            }else if(sPos>=3086&&sPos<3630){
+//                $('.gnb a').removeClass('on'); //기존에 적용된 서식이 있으면 제거하고
+//                $('.gnb > li:nth-child(4) a').addClass('on'); //네번째 메뉴 서식 적용
+//            }else if(sPos>=3856&&sPos<4500){
+//                $('.gnb a').removeClass('on'); //기존에 적용된 서식이 있으면 제거하고
+//                $('.gnb > li:nth-child(5) a').addClass('on'); //다섯번째 메뉴 서식 적용
+//            }else if(sPos>=4626&&sPos<5200){
+//                $('.gnb a').removeClass('on'); //기존에 적용된 서식이 있으면 제거하고
+//                $('.gnb > li:nth-child(6) a').addClass('on'); //여섯번째 메뉴 서식 적용
+//            }else if(sPos>=5396){
+//                $('.gnb a').removeClass('on'); //기존에 적용된 서식이 있으면 제거하고
+//                $('.gnb > li:last-child a').addClass('on'); //일곱번째 메뉴 서식 적용
+//            }else{
+//                $('.gnb a').removeClass('on'); //기존에 적용된 서식이 있으면 제거하고
+//            }
+            
+            
+            
+            
+        });
+        
+        
+        $('footer a').click(function(){ //탑버튼 클릭시
+            $('body, html').animate({'scrollTop':'0px'},500); //화면상단으로 올리기
+            
+            return false(); //새로고침방지
+        });        
+        
+    });
+    </script>
+</head>
+<body>
+   <span class="status"></span>
+    <!-- 상단헤더영역 시작 -->
+    <header>
+       <img src="./img2/menu2.jpg" alt="" id="hd">
+        <div id="header_top">
+            <h1><a href="index.html" title="메인페이지로 바로가기"><img src="./img2/patagonia-logo2.png" alt=""></a></h1>
+        </div>
+        <nav>
+<!--            ul.gnb>li*7>a[href=# title=]-->
+            <ul class="gnb">
+                <li><a href="#" title="history">history</a></li>
+                <li><a href="#" title="campagin">campagin</a></li>
+                <li><a href="#" title="activist">activist</a></li>
+                <li><a href="#" title="sponsorship">sponsorship</a></li>
+                <li><a href="#" title="contact us">Contact Us</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    
+    <!-- 콘텐츠영역 시작 -->
+    <section>
+        <article id="visual">
+           
+            <img src="./img2/main_con4.png" alt="">
+
+        </article>
+        
+        <article class="sub_con1" id="history">
+            <h2 class="sub_con1_1">history</h2>
+            <img src="./img2/main.jpg" alt="">
+            <ul>
+                <li><a href="#" title="">대장장이 등반가</a></li>
+                <li><a href="#" title="">색깔을 입히다</a></li>
+                <li><a href="#" title="">등반가를 위한 옷</a></li>
+                <li><a href="#" title="">파도가 칠 때는 서핑을</a></li>
+            </ul>
+            <span class="hi_1">파타고니아 창립자 이본 쉬나드는 1953년, 사냥을 위해 독수리와 팔콘을 훈련시키는 남부 캘리포티나 팔콘 클럽에서 활동하던 14살 때 클라이밍을 처음 시작했습니다. 젊은 리더였던 돈 프렌티스는 어린 친구들에게 팔콘 둥지가 있는 절벽으로 하강하는 방법을 가르쳐 주었습니다.<br> 이본과 친구들은 샌 페르나도 계곡 서쪽 끝으로 향하는 열차에 뛰어 올라 스토니 포인트의 사암 절벽으로 갔습니다. 거기서 이본은 등반과 하강법을 배웠습니다.</span>   
+        </article>
+        
+        <article class="sub_con2" id="campagin">
+           <h2 class="sub_con2_1">campaign</h2>
+            <img src="./img2/sub1.jpg" alt="">
+        </article>
+        
+        <article class="sub_con3" id="activist">
+           <h2 class="sub_con3_1">activist</h2>
+            <img src="./img2/sub2.jpg" alt="">
+        </article>
+        
+        <article class="sub_con4" id="con">
+           <h2 class="sub_con4_1">Sponsorship</h2>
+            <ul>
+                <li><img src="./img2/sub3/400x225_100_Planet-Spiff.jpg" alt=""></li>
+                <li><img src="./img2/sub3/400x225_davis_t_1284.jpg" alt=""></li>
+                <li><img src="./img2/sub3/400x225_hardy_l_0001.jpg" alt=""></li>
+            </ul>
+            <ul>
+                <li><img src="./img2/sub3/800x450_GrantGuidelines.jpg" alt=""></li>
+                <li><img src="./img2/sub3/800x450_ToolsConference.jpg" alt=""></li>
+                <li><img src="./img2/sub3/blackfri-map.jpg" alt=""></li>
+            </ul>
+            <ul>
+                <li><img src="./img2/sub3/inside_article_1543971695_main.jpg" alt=""></li>
+                <li><img src="./img2/sub3/inside_article_1558592014_main.jpg" alt=""></li>
+                <li><img src="./img2/sub3/inside_article_1558592115_main.jpg" alt=""></li>
+            </ul>            
+        </article>
+        
+        <article class="sub_con5" id="tech">
+        <form name="contact" method="post" action="contact_me1.php">
+        <fieldset>
+           <h2 class="sub_con5_1">Contact US</h2>
+            <legend></legend>
+            <!-- 1. 제목 -->
+            <div class="field">
+               <span class="f_1">제목</span>
+                <label for="subject"></label>
+                <input type="text" name="subject" id="subject" placeholder="단순 문의 게시판(구매하지 않은 일반 문의)">
+            </div>
+            
+            <!-- 2. 이름 -->
+            <div class="field">
+               <span class="f_1">성명</span>
+                <label for="name"></label>
+                <input type="text" name="name" id="name" placeholder="홍 길 동">
+            </div>
+            
+            <!-- 3. 이메일 -->
+            <div class="field">
+               <span class="f_1">메일</span>
+                <label for="email"></label>
+                <input type="email" placeholder="id@domain.com" name="email" id="email">
+            </div>
+            
+            <!-- 4. 내용 -->
+            <div class="field">
+                <label for="message"></label>
+                <textarea name="message" id="message" rows="5" placeholder="내용을 입력해주세요."></textarea>
+            </div>
+        
+            <!-- 5. 보내기 -->
+            <ul id="me2">
+                <li><input type="submit" value="보내기"></li>
+            </ul>                      
+               
+            
+        </fieldset>
+    </form>
+        </article>
+
+    </section>
+    
+    <!-- 푸터영역 시작 -->
+    <footer>
+        <a href="#" title="페이지 위로">top</a>
+        <address>Copyright&copy;2020 Hyundai Moters allrights reserved.</address>
+    </footer>
+</body>
+</html>
